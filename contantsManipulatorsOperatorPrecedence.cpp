@@ -31,6 +31,6 @@ int main(){
 
     int a =  3, b =4;
     int c = a*5+b;
-    cout<<c;
+    cout<<c;t
     return 0;
 }
