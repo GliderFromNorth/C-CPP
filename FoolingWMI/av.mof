@@ -1,0 +1,17 @@
+#pragma autorecover
+#pragma namespace("\\\\.\\root")
+instance of __Namespace
+{
+ Name = "SecurityCenter2";
+};
+#pragma namespace("\\\\.\\root\\SecurityCenter2")
+instance of AntiVirusProduct
+{
+ displayName = "ESET NOD32 Antivirus 4";
+ instanceGuid = "{CD3EA3C2-91CB-4359-90DC-1E909147B6B0}";
+ pathToSignedProductExe = 
+ "C:\\Program Files\\ESET\\ESET NOD32 Antivirus\\ecmd.exe";
+ pathToSignedReportingExe =
+ "C:\\Program Files\\ESET\\ESET NOD32 Antivirus\\x86\\ekrn.exe";
+ productState = 266240;
+};

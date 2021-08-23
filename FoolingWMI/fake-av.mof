@@ -1,0 +1,16 @@
+#pragma autorecover
+#pragma namespace("\\\\.\\root")
+instance of __Namespace
+{
+ Name = "SecurityCenter";
+};
+#pragma namespace("\\\\.\\root\\SecurityCenter")
+instance of AntiVirusProduct
+{
+ companyName = "ESET, spol. s.r.o.";
+ displayName = "ESET NOD32 Antivirus 4";
+ instanceGuid = "{CD3EA3C2-91CB-4359-90DC-1E909147B6B0}";
+ onAccessScanningEnabled = TRUE;
+ productUptoDate = TRUE;
+ versionNumber = "6.2.71.2";
+};
