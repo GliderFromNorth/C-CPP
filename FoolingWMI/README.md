@@ -8,3 +8,6 @@ vbs and c# script are added along with this code.
 
 
 Note: I haven't wrote any of code I just collected the information and scripts from Internet. 
+References below.
+
+https://www.opswat.com/blog/windows-security-center-fooling-wmi-consumers
