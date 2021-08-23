@@ -11,3 +11,7 @@ Note: I haven't wrote any of code I just collected the information and scripts f
 References below.
 
 https://www.opswat.com/blog/windows-security-center-fooling-wmi-consumers
+
+https://stackoverflow.com/questions/1331887/detect-antivirus-on-windows-using-c-sharp
+
+https://www.geeksforgeeks.org/how-to-make-save-and-run-a-simple-vbscript-program/
