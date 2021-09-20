@@ -1,0 +1,15 @@
+Hello My name is SAURAV JHA. 
+
+.dll 
+.exe
+.ppt.
+.doc
+sandbox size limit is around 30 mb.
+
+test upto 50mb
+python in ubuntu should be python 3.
+
+Encyption in windows and decryption in ubuntu 14.04
+
+
+parameters to be in " " . 
