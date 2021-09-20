@@ -1,0 +1,4 @@
+Using Cpp to Call Commands on Windows Terminal using system() function in CPP.
+you'll need to install one library of python(pip install pycryptodome) for running the encryption and decryption commands.
+this projects files are only related to my use case.
+what you should learn from this cpp code is how to add multiple commands and pass all those commands as a single string to the shell using CPP.
