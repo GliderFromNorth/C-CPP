@@ -1,11 +1,14 @@
 // UpdateConfigFile.cpp : Defines the entry point for the console application.
 // C:\Program Files\Sequretek\Kawach\endpoint\settings\debugControl.json
+// Command to Run for Test -->  .\UpdateConfigFile.exe "C:\Program Files\Sequretek\Kawach\endpoint\settings\debugControl.json" "{\""sandbox\"":false,\""Raid\"":false,\""encryptSandboxFile\"":false,\""GoodDbScan\"":false}"
 
+#include "stdafx.h"
 #pragma warning(disable : 26812)
-#pragma warning(disable : 4996)
+#pragma warning(disable : 4996
 #include <iostream>
-#include <json\json.h>
-#include <json\value.h>
+#include <stdio.h>
+#include "json/json.h"
+#include <string>
 #include <fstream>
 #include <Wbemidl.h>
 #include <sstream>
@@ -13,59 +16,62 @@
 #include <comdef.h>
 #include <shlwapi.h>
 #pragma comment(lib,"Shlwapi.lib")
-
 using namespace std;
-
 int main(int argc, char* argv[])
 {
-	Json::Reader reader;
-	Json::Value root;
-	if (argc != 4)
+	if (argc !=3)
 	{
 		cout << "Error: Invalid arguments \nUsage: ReadLastIndex.exe \"Complete\\File\\Path\"\n";
 		return 0;
 	}
 	string fileName = argv[1];
-	string Key = argv[2];
-	string Value = argv[3];
+	string newJson = argv[2];
+	ifstream ifile(fileName, ifstream::binary);
 	if (PathFileExistsA(fileName.c_str()) != TRUE)
 	{
 		cout << "Error: File does not exist\n";
 		return 0;
 	}
-	else
+
+	if (!ifile.is_open())
 	{
-
-		std::cout << "Index file: " << fileName << endl;
-		cout << endl;
-		cout << endl;
-		std::ifstream debug_file(fileName);
-		bool parsingsuccessful = reader.parse(debug_file, root); //or : debug_file >> root;
-		if (!parsingsuccessful) cout << "Error: Parsing Failed\n";
-		cout << root << endl;  //printing whole object
-		cout << endl;
-		cout << "Sandbox : " << root[Key] << endl;   //printig default key value
-		cout << endl;
-		root[Key] = Value;  //making changes to given key value
-		cout << endl;
-
-		Json::StyledWriter writer;
-		std::string outputConfig = writer.write(root);
-		/*cout << "ransomware : " << root["ransomware"] << endl;
-		cout << "registryScan : " << root["registryScan"] << endl;
-		cout << endl;*/
-		/*std::string encoding = root["fileReputation"].get("fileReputation", "Not found").asString();
-		cout << encoding << endl;*/
-		cout << Key + " : " << root[Key] << endl;
-		cout << endl;
-		cout << outputConfig << endl;
-		cout << endl;
-		ofstream fout;
-		fout.open(fileName, ios::out);
-		fout << outputConfig;
-		fout.close();
-
+		printf("Failed to open file\n");
+		return false;
 	}
-
+	Json::Reader reader;
+	Json::Value rootSettings;
+	bool ret = reader.parse(ifile, rootSettings);
+	if (ret != true)
+	{
+		printf("Invalid json in the config file\n");
+	}
+	cout << "********************************Original Json************************************" << endl;
+	cout << rootSettings << endl;
+	Json::Value root;
+	ret = reader.parse(newJson, root);
+	if (ret != true)
+	{
+		printf("Invalid json provided\n");
+		cout << newJson << endl;
+	}
+	cout <<"**********************************New Confog for updation**********************************"<< endl;
+	cout << root << endl;
+	Json::Value::Members keys = root.getMemberNames();
+	for (int i = 0; i < keys.size(); i++) {
+		string key = keys[i];
+			rootSettings[key] = root[key].asBool();
+	}
+	ifile.close();
+	Json::FastWriter writer;
+	std::string newConfig = rootSettings.toStyledString();
+	cout << "************************************Updated Json*****************************" << endl;
+	cout << newConfig << endl;
+	ofstream fout(fileName);
+	if (fout.is_open())
+	{
+		fout << newConfig.c_str();
+		fout.close();
+	}
 	return 0;
 }
+
